@@ -21,4 +21,20 @@ app.use(express.static("public"))
 
 app.use(cookieParser())
 
+
+//routes import 
+import userRouter from './routes/user.routes.js'
+
+//routes declaration
+app.use("/api/v1/users",userRouter)  //ye users bangaya prefix 
+//and /users ke baad control chalagaya user.routers.js me and then /register method pe chale jaaenge
+// https://localhost:8000/api/v1/users/register or /login or any method after /users
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send("Something went wrong!");
+});
+
+
+
+
 export {app};
